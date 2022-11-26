@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { CurrentTrade } from "./CurrentTrade";
 import { ExchangeRates } from "./ExchangeRates";
 
-let key = "YNR6QewLvpBDzl2e696M7PtiCbFsqle6";
 
 export const Fetch = () => {
   const [loading, setLoading] = useState(true);
@@ -14,9 +13,9 @@ export const Fetch = () => {
   const [to, setTo] = useState("");
 
   // console.log(key);
+  let key = process.env.KEY
 
   const convertRates = () => {
-    console.log("Data Fetched!!!");
     try {
       const myHeaders = new Headers();
       myHeaders.append("apikey", key);
@@ -34,10 +33,7 @@ export const Fetch = () => {
         .then((res) => res.json())
         .then((data) => {
           setLoading(false);
-          // setTo(data.query.to);
-          // setFrom(data.query.from);
           setResult(data);
-          console.log(result);
         });
     } catch (error) {
       console.log(`error ${error}`);
@@ -58,11 +54,7 @@ export const Fetch = () => {
         setLoading={setLoading}
         loading={loading}
         result={result}
-        from={from}
-        to={to}
       />
-
-      <CurrentTrade />
     </div>
   );
 };

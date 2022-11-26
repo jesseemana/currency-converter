@@ -8,8 +8,6 @@ export const ExchangeRates = ({
   convertRates,
   loading,
   setLoading,
-  from,
-  to,
   result
 }) => {
   const [value1, setValue1] = useState("");
